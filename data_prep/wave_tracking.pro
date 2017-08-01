@@ -117,7 +117,7 @@
 ;
 
 
-pro wave_tracking_v2, date, nwl=nwl,                           $
+pro wave_tracking, date, nwl=nwl,                           $
                          own_data=own_data,                 $
                          compute_speeds=compute_speeds,     $
                          cross_corr=cross_corr,             $
