@@ -1,0 +1,279 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage[font={small}]{caption}
+\usepackage{setspace}
+\usepackage[margin=20mm]{geometry}
+\usepackage{listings}
+\usepackage{wrapfig}
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{\textit{CoMP WTC Documentation}} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+%\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+%\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+%\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{ 
+\normalfont \normalsize 
+\textsc{Solar Physics Group, Department of Mathematics, Physics and Electrical Engineering, Northumbria University} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge CoMP Wave Tracking Code Document \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Richard Morton*} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+
+
+%\newlength\tindent
+%\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+ 
+
+\begin{document}
+\maketitle % Print the title
+
+\vspace{10cm}
+
+\begin{center}
+{Version 1}\\
+* Contact: richard.morton@northumbria.ac.uk 
+\end{center}
+
+\newpage
+\underline{\textbf{History}}\\
+
+Version 1 - 05/2019 - Basic operating information\\
+
+
+\vspace{2cm}
+
+If you spot any mistakes or suggestions please email \textit{richard.morton@northumbria.ac.uk} .
+
+\newpage
+\section{Introduction}
+
+This document contains information on how to use the Coronal Multi-Channel Polarimeter (CoMP) Wave Tracking Code (WTC), 
+which is designed to align CoMP L2 data 
+products (core intensity, Doppler Velocity and Doppler width) and fill in any missing frames to produce evenly sampled 
+time-series. The CoMP Doppler velocity data is ideal for the measurement of coronal Alfv\'enic waves. The WTC can calculate the 
+propagation orientation of the waves to produce a wave angle map - this has been demonstrated to show good agreement with 
+the plane-of-sky magnetic field orientation derived from CoMP polarimetric measurements. Using the wave angles, the WTC can 
+then make measurements of the propagation speed of the waves throughout the corona. This is useful for magneto-seismology if
+CoMP has also taken measurements in the 10798~{\AA} line, whose ratio with the 10747~{\AA} line is sensitive to density - hence
+there is the possibility to provide some measure of the coronal magnetic field.
+
+\medskip
+We note that the current version of the code is unix centric! Certain features will not work with a windows machine.
+Let us know any problems and we can try to fix (or if you can provide a fix, even better!).
+
+\subsection{Required files}
+
+Current working version - v0.3
+
+\subsubsection{Main files}
+wave$\_$tracking.pro, find$\_$man$\_$date.pro,  comp$\_$load$\_$files.pro, wave$\_$angle$\_$calc.pro, compute$\_$speed.pro, dejitter.pro, comp$\_$config.pro 
+
+\subsubsection{Minor files} 
+do$\_$apod.pro, plot$\_$wave$\_$maps.pro
+
+\subsubsection{External files} 
+fg$\_$rigidalign2.pro, tr$\_$get$\_$disp$\_$2b.pro, shift$\_$img.pro
+
+uses routines in ssw/gen
+
+\section{Initial configuration}
+The majority of hard-coded variables in the WTC are located in the \textit{comp$\_$config.pro} file. It is suggested that these are not
+altered unless you are sure you know what the consequences are!
+
+\smallskip
+
+The only variable that will initially need altering is your personal directory for CoMP data analysis ({root$\_$dir}). The folder system assumes that you have L2 data located at 'root$\_$dir/CoMP/year/month/day/' and that there is a folder for data products located at 'root$\_$dir/CoMP/wave$\_$tracking$\_$output/'.
+
+
+
+\section{Initial data load}
+The main routine is \textit{wave$\_$tracking} which will read in L2 data from fits files, and produce cubes of intensity, 
+velocity and Doppler width with a functional index structure and saves in idlsave files. 
+
+\medskip
+The L2 fits files should be kept in folders with format 'CoMP/year/month/day/' where year, month, day are numbers. At present,
+the path to the CoMP folder is hard-coded into the \textit{wave$\_$tracking} file and needs to be edited to the user.
+
+\medskip
+When working with L2 files for the first time, you need to make at least the following basic call: 
+
+\medskip
+\textit{IDL$>$date='20120327' ; year/month/day\\
+IDL$>$wave$\_$tracking, date, /init$\_$load
+}
+
+\medskip
+The routine calls comp$\_$load$\_$files, which is designed to read in fits files, works out cadence (generally 30 seconds) 
+and fill in any gaps (due to missing frames) via linear interpolation. There is no maximum to the number of contiguous missing frames that can be filled. However, any more than 2 or 3 is likely to contain to much 'imaginary' data, and will probably require some more advanced approach, e.g., maximum entropy method. Also created is the basic index file from information in the fits headers (note this index does not follow the standard header fits notation). The index is furnished with additional information related to data and it
+its processing with the WTC.
+
+\medskip
+As part of this stage, we also mask out some of the pixels based on certain conditions. First we calculate the median value of
+each pixel in the intensity cube from all time-frames. Any pixel whose median is zero will have more than 50\% of time-frames with no signal. When then apply a spatial median filter to the time-median intensity image, any pixel in the resulting image with a zero value of intensity is then isolated from pixels with signal. Any pixel that have zeros in both these median filters is considered poor 
+quality and masked out. This process removes a significant number of the pixels with poor quality time-series.\\
+A final filtering step is performed. The intensity time-series of each pixel that has passed the first stage of filtering is then 
+examined, and the number of zero values it contains is calculated. If this value is greater than the number of missing frames then
+the time-series is considered poor quality and masked out. This final stage of filtering can be turned off by using the 
+$/no\_hard\_mask$ keyword.
+
+\medskip
+As mentioned, the default gap filling procedure is linear interpolation. If you are wanting to fill gaps longer than 2 or 3 contiguous
+frames, then a more advanced technique is required. There is the option to implement maximum entropy gap filling (reference). This can
+be turned on via the $/max\_ent$ keyword. The time-series of each pixel is examined in turn and the maximum entropy calculation is undertaken. Hence, this process is slower than the linear interpolation but is still reasonably quick. At present, the number of coefficients used in the calculation can be set in the $find\_man\_date.pro$ file. In theory, it should be possible to apply a model
+selection criteria, e.g. AIC, to find the 'best' number of coefficients - however, there are some issues with this. It is likely that
+the ideal number of coefficients for intensity, velocity and Doppler width are different, given the different nature of the time-series.
+At present, a single value is used for all. Hence, it is suggested that some initial tests are performed with the time-series to find
+the most suitable value.
+
+
+\medskip
+The data is then saved to 'CoMP/wave$\_$tracking$\_$output/' - the folder will be automatically generated if it doesn't exist.
+
+
+\medskip
+The basic call given above can be furnished with additional keywords and calls to achieve various tasks (see below). 
+
+
+
+%------------------------------
+%------------------------------
+\section{Aligning data}
+The data cubes can be aligned via an FFT-based implementation that measures shifts in intensity images. If the keyword /cross$\_$corr 
+is used then data cubes will be aligned via 2d FFT cross-correlation (CC), with the neighbourhood of the CC peak fit with a surface 
+to find sub-pixel accuracy for CC (tests have shown this accuracy is comparable to Taylor expansion techniques ~0.1 pix). The 
+wrapper calls dejitter.pro for this, which is requires fg$\_$rigidalign2.pro and tr$\_$get$\_$disp.pro (both of which are alignment 
+routines developed by A. De Wijn and T. Tarbell respectively, modified by R. J. Morton). The alignment process CC's four contiguous 
+frames and calculates alignment vectors for them. The next four frames are also self aligned and then additional vectors are 
+calculated to align to the last frame of the previous sequence. The alignment is carried out by with shift$\_$img (T. Metcalf) using 
+poly$\_$2d.
+
+\smallskip
+The alignment process repeats itself on the aligned images multiple times to achieve the best alignment. The process is repeated
+until returned frame-to-frame shifts are less than a threshold value or a maximum number of iterations have been performed (both of 
+which can be set in find$\_$man$\_$date).
+
+\medskip
+If you have already performed an initial load of the data, you can restore and align the data with the following:
+
+\medskip
+\textit{IDL$>$ wave$\_$tracking, date,/cross$\_$corr,/choose$\_$corr$\_$box
+}
+
+\medskip
+Using /choose$\_$corr$\_$box allows a manual selection of the CC box through an interactive window - normally useful when examining data for the first time. 
+
+\medskip
+It is advised to use the /dosob keyword if doing alignment, which uses the Sobel gradient filter to calculate 2d gradients in the image. The intensity gradient turns out to provide better contrast and improves cross-correlation.
+
+\medskip
+\textit{IDL$>$wave$\_$tracking, date,/cross$\_$corr,/choose$\_$corr$\_$box,/dosob}
+\medskip
+
+The choose$\_$corr keyword enables a window-based point and click method for choosing a region that will be used for correlation. 
+From experience, you will probably have to modify the region used for cross-correlation by hand. A well-chosen region will only
+take a few iterations ($<20$) of the alignment to reach the threshold (if using the Sobel filter). The coordinates of the 
+region used for cross-correlation can also be entered in find$\_$man$\_$date.
+
+
+\medskip
+\textbf{Note: All the additional keywords can be given during the initial load stage.}
+
+\subsection{Wave Angle Calculation}
+
+\textit{IDL$>$ wave$\_$tracking,'20120327',/compute$\_$waveang}
+
+\subsection{Computing propagation speeds}
+
+\textit{IDL$>$ wave$\_$tracking,'20120327',/compute$\_$speeds}
+
+
+----------------------------------------\\
+Text below here needs to be sorted.
+
+Also calculates the Alfvenic wave propagation angle from velocity data.
+
+%------------------------------
+%------------------------------
+
+\section{find$\_$man$\_$date}
+
+First call is to find$\_$man$\_$date . This is essentially a large list of dates for which data sets have already been processed and processing values are known (e.g., correlation box). The information is stored in a short section labelled by date, 
+
+
+ '20120327': begin\\
+ 
+ \hspace{1.5cm}      config.coordinatesCCBox=[[55,220],[85,260]] ; Cross-correlation box [x1,y1],[x2,y2]\\
+
+ \hspace{1.5cm}      config.startFile = 0                           ;fits file to start with\\
+
+ \hspace{1.5cm}      config.numberFilesToProcess = 164                  ;Number of fits files to use\\
+
+ \hspace{1.5cm}      config.lowerMaskRadius = 228.                       ;Upper and lower radial indices that marks FOV\\
+
+ \hspace{1.5cm}      config.upperMaskRadius = 280.                       ;boundaries for CoMP\\
+
+ \hspace{1cm} end\\
+
+Undefined dates are given default values which are probably no good!
+
+
+
+
+With /debug set, ….
+
+
+
+
+After alignment the routine stops so that you can play movies of the data cubes to check quality of
+alignment procedure.
+
+Type .c to continue.
+
+Basic pixel mask is defined based on inner and outer radius of occulter. This is not waste computational time on pixels with no signal.
+
+The next stage is to calculate the wave propagation angle. This is done as default. The velocity data is mean subtracted and FFT'd. The transformed data is then sent to wave$\_$angle$\_$calc.pro for
+processing.
+
+Wave Angle Calculation
+Starting at a pixel, a 40 by 40 is generated around the pixel. Each time-series in then cross-correlated in Fourier space with the central pixel to calculate the cross-spectral coherence. The results are filtered in frequency space, focusing on a narrow frequency band centred on 3.5 mHz with a width of 1.5 mHz (is this the best choice?) in order to select the power enhancement seen in power spectra (e.g., Tomczyk \& McIntosh 2009; Morton et al 2016). If a time-series has a coherence of gt 0.5 with the central pixel, it is saved. Otherwise, it is rejected. 
+
+Not entirely sure if this best selection criteria for coherence, seems arbitrary but works well enough.
+
+If there is enough coherent points (>10) then the 
+a straight line is fit to the minimise the perpendicular distance between all points. This is an analytic solution calculated under the constraint that the line does through the central pixel. Error on angle
+calculated using analytic perturbation by pm 2 degrees (not sure where this comes from).
+
+No account for quality of points is considered - may benefit from applying some rejection criteria, e.g, double fitting process or weighting based on coherence. Calculation of error on angle may or may not be appropriate. Also, unclear how this performs near occulting disk with half empty boxes!
+
+A measure of coherence 2 dimensionally is also calculated by fitting ellipses to the data points, assuming a coherent island of points. Returning the length of the major and minor axis.
+
+Once performed for every pixel inside mask, returns to main programme.
+
+The elliptical coherence measure is used to define a new mask, that removes pixels with no significant coherence to at least 10 other pixels.
+
+
+\end{document}

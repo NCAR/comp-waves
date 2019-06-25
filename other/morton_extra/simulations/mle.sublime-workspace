@@ -1,0 +1,1278 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"param",
+				"parameters"
+			],
+			[
+				"dct",
+				"dct_fft_3d"
+			],
+			[
+				"window",
+				"window_size"
+			],
+			[
+				"END",
+				"ENDCASE"
+			],
+			[
+				"period",
+				"periodh"
+			],
+			[
+				"per",
+				"per_x"
+			],
+			[
+				"con",
+				"conv_as2km"
+			],
+			[
+				"threads",
+				"threads_fit1"
+			],
+			[
+				"cor",
+				"cor_len_pl"
+			],
+			[
+				"thr",
+				"threer"
+			],
+			[
+				"thre",
+				"threel"
+			],
+			[
+				"ft_",
+				"ft_out_len"
+			],
+			[
+				"mean",
+				"mean_coher_bs"
+			],
+			[
+				"num",
+				"num_bs-1"
+			],
+			[
+				"nu",
+				"num_bs-1"
+			],
+			[
+				"over",
+				"overlap"
+			],
+			[
+				"N",
+				"NoYs"
+			],
+			[
+				"ts",
+				"tseries"
+			],
+			[
+				"ft",
+				"ft_out_len"
+			],
+			[
+				"xpec",
+				"Xspec_11"
+			],
+			[
+				"Xspec",
+				"Xspec_22"
+			],
+			[
+				"FT_",
+				"FT_ser1"
+			],
+			[
+				"like",
+				"likelihood_current"
+			],
+			[
+				"mn",
+				"mn_res_n10_l160"
+			],
+			[
+				"font",
+				"font_size"
+			],
+			[
+				"co",
+				"corr_coff2"
+			],
+			[
+				"corr",
+				"corr_coff"
+			],
+			[
+				"po",
+				"pow_coeff"
+			],
+			[
+				"pow",
+				"pow_dt"
+			],
+			[
+				"prof",
+				"prof_min"
+			],
+			[
+				"local",
+				"local_siglvl"
+			],
+			[
+				"back",
+				"back_fit_per"
+			],
+			[
+				"glo",
+				"global_signif"
+			],
+			[
+				"si",
+				"significance"
+			],
+			[
+				"test",
+				"test_val"
+			],
+			[
+				"tim",
+				"time-series"
+			],
+			[
+				"rdata",
+				"rdata_mask"
+			],
+			[
+				"wpo",
+				"wpower"
+			],
+			[
+				"back_fit",
+				"back_fit_per"
+			],
+			[
+				"mx",
+				"mx_per"
+			],
+			[
+				"wpower",
+				"wpower_orig"
+			],
+			[
+				"de",
+				"debug"
+			],
+			[
+				"pergm",
+				"pergm_cor"
+			],
+			[
+				"glob",
+				"global_siglvl"
+			],
+			[
+				"chis",
+				"chisq_arr"
+			],
+			[
+				"lik",
+				"likelihood"
+			],
+			[
+				"fish",
+				"fish_info"
+			],
+			[
+				"func",
+				"func_name"
+			],
+			[
+				"loca",
+				"local_signif"
+			],
+			[
+				"sig",
+				"siglvl"
+			],
+			[
+				"wave",
+				"wave_signif"
+			],
+			[
+				"alog",
+				"ALOG10"
+			],
+			[
+				"steff",
+				"st_teff2"
+			],
+			[
+				"Bubble",
+				"bubble_ML"
+			],
+			[
+				"ind",
+				"indicies"
+			],
+			[
+				"aia",
+				"aiaamp"
+			],
+			[
+				"aiac",
+				"aiacomp4"
+			],
+			[
+				"aiacomp_",
+				"aiacomp_qs"
+			],
+			[
+				"bubble",
+				"bubble_ML"
+			],
+			[
+				"mass",
+				"mass_hist"
+			],
+			[
+				"pdf_ma",
+				"pdf_mass_all"
+			],
+			[
+				"st",
+				"stairstep"
+			],
+			[
+				"log",
+				"loglik_line"
+			],
+			[
+				"aic",
+				"aic_line"
+			],
+			[
+				"logl",
+				"loglik_line"
+			],
+			[
+				"temp",
+				"temporary"
+			],
+			[
+				"wav",
+				"wavran"
+			],
+			[
+				"ku",
+				"kurwav"
+			],
+			[
+				"create",
+				"creat_neckel_save"
+			],
+			[
+				"ne",
+				"neckel_astro_flux"
+			],
+			[
+				"sp",
+				"spectral_intensity"
+			],
+			[
+				"edge_tru",
+				"edge_trunc"
+			],
+			[
+				"Res",
+				"residuals"
+			],
+			[
+				"cube",
+				"cubei1074"
+			],
+			[
+				"lo",
+				"lower_r"
+			],
+			[
+				"v",
+				"v_err_rms"
+			],
+			[
+				"ratio",
+				"ratio_all"
+			],
+			[
+				"te",
+				"terr_vel"
+			],
+			[
+				"dum",
+				"dummy_vel"
+			],
+			[
+				"itrplt_",
+				"itrplt_counter"
+			],
+			[
+				"EN",
+				"ENDIF"
+			],
+			[
+				"n",
+				"n_elements"
+			],
+			[
+				"in",
+				"inten"
+			],
+			[
+				"wavel",
+				"wavelength"
+			],
+			[
+				"fm",
+				"fm_vel_spt"
+			],
+			[
+				"nt",
+				"nt"
+			],
+			[
+				"keywor",
+				"keyword_set"
+			],
+			[
+				"r_",
+				"r_upper"
+			],
+			[
+				"error",
+				"error"
+			],
+			[
+				"tot",
+				"tot_pix"
+			],
+			[
+				"ye",
+				"yend-ystart"
+			],
+			[
+				"xend",
+				"xend-xstart"
+			],
+			[
+				"int",
+				"interp_arr"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Applications/exelis/idl85/lib/routines/time_series/mle_fit_psd_ratio.pro",
+			"settings":
+			{
+				"buffer_size": 4540,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/Applications/exelis/idl85/lib/routines/time_series/hessian.pro",
+			"settings":
+			{
+				"buffer_size": 2574,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/richardmorton/Downloads/astron/pro/mrandomn.pro",
+			"settings":
+			{
+				"buffer_size": 2423,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Applications/exelis/idl85/lib/routines/stats/conf_band.pro",
+			"settings":
+			{
+				"buffer_size": 1071,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Applications/exelis/idl85/lib/routines/fitting/damp_model.pro",
+			"settings":
+			{
+				"buffer_size": 53,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "FUNCTION damp_model,x,p"
+			}
+		},
+		{
+			"file": "/Applications/exelis/idl85/lib/routines/stats/mc_samp.pro",
+			"settings":
+			{
+				"buffer_size": 752,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "pro mc_samp,data"
+			}
+		},
+		{
+			"file": "plot_ml_ratio_sims.pro",
+			"settings":
+			{
+				"buffer_size": 3888,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Applications/exelis/idl85/lib/routines/time_series/likelihood_pow_rat.pro",
+			"settings":
+			{
+				"buffer_size": 1524,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mcsimpowlaw_rat.pro",
+			"settings":
+			{
+				"buffer_size": 5299,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mcsim_coh.pro",
+			"settings":
+			{
+				"buffer_size": 3450,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mc_sim_coh_pt2.pro",
+			"settings":
+			{
+				"buffer_size": 2960,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mcsimpowlaw.pro",
+			"settings":
+			{
+				"buffer_size": 8223,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Applications/exelis/idl85/lib/routines/time_series/ps_welch.pro",
+			"settings":
+			{
+				"buffer_size": 854,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 485.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"sublime.version()"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Applications/exelis/idl85/lib/routines/stats/normal_md.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/rand_kw.pro",
+		"/Applications/exelis/idl85/lib/routines/time_series/dct_fft",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/CH_coher.pro",
+		"/Applications/exelis/idl85/lib/routines/time_series/welch_psd.pro",
+		"/Applications/exelis/idl85/lib/routines/time_series/hessian.pro",
+		"/Applications/exelis/idl85/lib/routines/time_series/ts_gen.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/simulations/PRO plot_ml_ratio_sims",
+		"/Applications/exelis/idl85/lib/routines/fitting/mypowgauss.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/rad_ave_comp.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/ang_conv.pro",
+		"/Applications/exelis/idl85/lib/routines/time_series/likehood_pow_c.pro",
+		"/Applications/exelis/idl85/lib/routines/time_series/likehood_pow.pro",
+		"/Applications/exelis/idl85/lib/routines/time_series/periodogram.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/compute_speed_new.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/average_spec.pro",
+		"/Applications/exelis/idl85/lib/routines/no_turb.pro",
+		"/Applications/exelis/idl85/lib/routines/read_kur_atlas.pro",
+		"/Applications/exelis/idl85/lib/routines/read_fts_atlas.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/comp_clean.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/aa_comp.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/frad_coord.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/histo_bin_calc.pro",
+		"/Applications/exelis/idl85/lib/routines/idlutils/src/math/nr.h",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/comp_seis_tool.pro",
+		"/Users/richardmorton/Desktop/work/thesis/master.tex",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/rad_ave_comp_v2.pro",
+		"/Applications/exelis/idl85/lib/routines/Movie/movie_image.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/compute_speed.pro",
+		"/Applications/exelis/idl85/lib/routines/wave_tracking_td/locate_things_fg.pro",
+		"/Applications/exelis/idl85/lib/routines/Movie/movie_imagex2.pro",
+		"/Applications/exelis/idl85/lib/routines/fm_vel_spt.pro",
+		"/Applications/exelis/idl85/lib/routines/create_dv_map.pro",
+		"/Applications/exelis/idl85/lib/routines/wave_tracking_td/follow_thread.pro",
+		"/Applications/exelis/idl85/lib/routines/wave_tracking_td/locate_things_min.pro",
+		"/Applications/exelis/idl85/lib/routines/wave_tracking_td/track_rout.pro",
+		"/Applications/exelis/idl85/lib/routines/fitting/mygauss_plus_linear.pro",
+		"/Applications/exelis/idl85/lib/routines/wave_tracking_td/quick_plot_ft.pro",
+		"/Applications/exelis/idl85/lib/routines/idlutils/goddard/pro/math/kstwo.pro",
+		"/Applications/exelis/idl85/lib/routines/tvim.pro",
+		"/Applications/exelis/idl85/lib/routines/lapalma/lp_header.pro",
+		"/Applications/exelis/idl85/lib/routines/buie_idlv82/meanerr2.pro",
+		"/Applications/exelis/idl85/lib/routines/sonic_filt.pro",
+		"/Applications/exelis/idl85/lib/routines/meanerr.pro",
+		"/Applications/exelis/idl85/lib/routines/idlutils/pro/math/djs_mean.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/progress_comp.pro",
+		"/Applications/exelis/idl85/lib/routines/comp_routines/morton_extra/find_man_date.pro",
+		"/Applications/exelis/idl85/lib/routines/wave_tracking_td/spline_slit.pro",
+		"/Users/richardmorton/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Applications/exelis/idl85/lib/routines/averpower2d.pro",
+		"/Applications/exelis/idl85/lib/routines/meas_loop_width.pro"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"nu",
+			"cov",
+			"half_window",
+			"i-",
+			"i",
+			"window_size/",
+			"flt",
+			"caprmin",
+			",/stairstep",
+			"amp",
+			"res",
+			"r",
+			"1",
+			"res.",
+			"(mean",
+			"3",
+			"(spec",
+			"spec_",
+			"spec",
+			"freq",
+			"Freq",
+			"freq",
+			"jk",
+			"(sz(1)-range+1)*sz(2)",
+			"[*,0,*])",
+			"reform(",
+			"bs[*,k]",
+			"reform(",
+			"[*,0,*])",
+			"outward",
+			"inward",
+			"in",
+			"freq",
+			"sz2",
+			"ref",
+			"/2",
+			"ft_out_len/2",
+			"nspec",
+			"xarr",
+			"sz(1)/2",
+			"xarr",
+			"num_bs",
+			"22",
+			"160",
+			"mn_res_n10_l160",
+			"160",
+			"like",
+			"v"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Applications/exelis/idl85/lib/routines/time_series/mle_fit_psd_ratio.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4540,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								930,
+								964
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 213.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Applications/exelis/idl85/lib/routines/time_series/hessian.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2574,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								257,
+								257
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/richardmorton/Downloads/astron/pro/mrandomn.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2423,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2263,
+								2225
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 753.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Applications/exelis/idl85/lib/routines/stats/conf_band.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1071,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								390,
+								390
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 66.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Applications/exelis/idl85/lib/routines/fitting/damp_model.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 53,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								47,
+								47
+							]
+						],
+						"settings":
+						{
+							"auto_name": "FUNCTION damp_model,x,p",
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Applications/exelis/idl85/lib/routines/stats/mc_samp.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 752,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								378,
+								378
+							]
+						],
+						"settings":
+						{
+							"auto_name": "pro mc_samp,data",
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "plot_ml_ratio_sims.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3888,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3691,
+								3691
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 70.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Applications/exelis/idl85/lib/routines/time_series/likelihood_pow_rat.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1524,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								476,
+								476
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "mcsimpowlaw_rat.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2301,
+								2301
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "mcsim_coh.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3450,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1399,
+								1399
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "mc_sim_coh_pt2.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2960,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2713,
+								2645
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "mcsimpowlaw.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5320,
+								5252
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/Applications/exelis/idl85/lib/routines/time_series/ps_welch.pro",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 854,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								541,
+								541
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/IDL.tmbundle/Syntaxes/IDL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "mle.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"average",
+				"routines/comp_routines/morton_extra/average_spec.pro"
+			],
+			[
+				"fradd",
+				"routines/comp_routines/morton_extra/frad_coord.pro"
+			],
+			[
+				"calc_de",
+				"routines/comp_routines/morton_extra/calc_den.pro"
+			],
+			[
+				"",
+				"routines/comp_routines/morton_extra/wave_tracking_v2.pro"
+			],
+			[
+				"aa_comp",
+				"routines/comp_routines/morton_extra/AA_comp_vel.pro"
+			],
+			[
+				"rad_ave",
+				"routines/comp_routines/morton_extra/rad_ave_comp_v2.pro"
+			],
+			[
+				"wave_angle_",
+				"routines/comp_routines/morton_extra/wave_angle_calc.pro"
+			],
+			[
+				"find_ma",
+				"routines/comp_routines/morton_extra/find_man_date.pro"
+			],
+			[
+				"dejitter",
+				"routines/comp_routines/dejitter.pro"
+			],
+			[
+				"compute",
+				"routines/comp_routines/compute_speed.pro"
+			],
+			[
+				"movie",
+				"routines/Movie/movie_image.pro"
+			],
+			[
+				"load_f",
+				"routines/comp_routines/morton_extra/comp_load_files.pro"
+			],
+			[
+				"foll",
+				"routines/wave_tracking_td/follow_thread.pro"
+			],
+			[
+				"mygal",
+				"routines/fitting/mygauss_plus_linear.pro"
+			],
+			[
+				"myga",
+				"routines/fitting/mygauss_plus_linear.pro"
+			],
+			[
+				"loacte",
+				"routines/wave_tracking_td/locate_things_fg.pro"
+			],
+			[
+				"quick",
+				"routines/wave_tracking_td/quick_plot_ft.pro"
+			],
+			[
+				"locatemin",
+				"routines/wave_tracking_td/locate_things_min.pro"
+			],
+			[
+				"tra",
+				"routines/wave_tracking_td/track_rout.pro"
+			],
+			[
+				"kstw",
+				"routines/idlutils/goddard/pro/math/kstwo.pro"
+			],
+			[
+				"tvim",
+				"routines/tvim.pro"
+			],
+			[
+				"lp_hea",
+				"routines/lapalma/lp_header.pro"
+			],
+			[
+				"fm_vel",
+				"routines/fm_vel_spt.pro"
+			],
+			[
+				"lp_",
+				"routines/lapalma/lp_header.pro"
+			],
+			[
+				"create",
+				"routines/create_dv_map.pro"
+			],
+			[
+				"mean",
+				"routines/meanerr.pro"
+			],
+			[
+				"locate",
+				"routines/wave_tracking_td/locate_things_fg.pro"
+			],
+			[
+				"progress",
+				"routines/comp_routines/progress_comp.pro"
+			],
+			[
+				"wave_tr",
+				"routines/comp_routines/morton_extra/wave_tracking_v2.pro"
+			],
+			[
+				"quick_speed",
+				"routines/comp_routines/morton_extra/quick_speed_compute.pro"
+			],
+			[
+				"test_run",
+				"rick_program/test_run.pro"
+			],
+			[
+				"comp_de",
+				"comp_routines/morton_extra/comp_despike.pro"
+			],
+			[
+				"find_man",
+				"comp_routines/morton_extra/find_man_date.pro"
+			],
+			[
+				"wave_trac",
+				"comp_routines/morton_extra/wave_tracking_v2.pro"
+			],
+			[
+				"spline",
+				"wave_tracking_td/spline_slit.pro"
+			],
+			[
+				"son",
+				"sonic_filt.pro"
+			],
+			[
+				"aver",
+				"averpower2d.pro"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 174.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,98 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 CoMP wave tracking\
+\
+Current routine - v0.3\
+\
+Main files\
+wave_tracking.pro, find_man_date.pro, do_apod.pro, comp_load_files.pro, wave_angle_calc.pro, compute_speed.pro, dejitter.pro, plot_wave_maps.pro, \
+\
+external \
+fg_rigidalign2, tr_get_disp_2b\
+\
+uses routines in ssw/gen\
+\
+Overview\
+Main routine is wave_tracking_v2 which will read in L2 data from fits files, and produce cubes of intensity, velocity and doppler width with a functional header structure and saves in idlsave files. Also calculates the Alfvenic wave propagation angle from velocity data.\
+\
+The L2 fits files should be kept in folders with format 'CoMP/year/month/day/' where year, month, day are numbers.\
+\
+Minimum call:\
+date='20120327' ; year/month/day\
+wave_tracking_v2, date\
+\
+This can be furnished with additional calls to align data cubes (aligns intensity images).\
+\
+Align:\
+wave_tracking_v2, date,/cross_corr,/choose_corr_box\
+\
+The intensity contrast is minimal though, and better alignment can be achieved using Sobel gradient filter: \
+wave_tracking_v2, date,/cross_corr,/choose_corr_box,/dosob\
+\
+\
+\'97\'97\'97\'97\'97\'97 \
+\
+Details of routines:\
+\
+The main call, wave_tracking_v2 is just a wrapper for a number of other routines were variables and filepaths are defined. Information is passed to the sub routines via COMMON variables and a structure.\
+\
+First call is to find_man_date . This is essentially a large list of dates for which data sets have already been processed and processing values are known (e.g., correlation box). The information is stored in a short section labelled by date, \
+\
+ '20120327': begin\
+                  temp_index.cc_coord=[[55,220],[85,260]] ; Cross-correlation box [x1,y1],[x2,y2]\
+      	       temp_index.start_file = 0                           ;fits file to start with\
+      	       num_files_proc = 164			         ;Number of fits files to use\
+      	       temp_index.lower_r = 228.                       ;Upper and lower radial indices that marks FOV\
+      	       temp_index.upper_r = 280.                       ;boundaries for CoMP\
+              end\
+\
+Undefined dates are given default values which are probably no good!\
+\
+\
+Next, the routine calls comp_load_files, which is designed to read in fits files, works out cadence (generally 30 seconds) and fills in any gaps in the data sequence with linearly interpolated data (uses interpolate function). The maximum number of contiguous missing frames is 3. Any more than this is likely to contain to much 'imaginary data', and will probably require some more advanced approach, e.g., maximum entropy method.   Also creates the basic index file from information in the fits headers (note this index does not follow the standard header fits notation).\
+\
+With /debug set, \'85.\
+\
+\
+\
+If the keyword /cross_corr has been used then data cubes will be aligned via 2d FFT cross-correlation (CC), with the neighbourhood of the CC peak fit with a surface to find sub-pixel accuracy for CC (tests have shown this accuracy is comparable to Taylor expansion techniques ~0.1 pix). The wrapper calls dejitter.pro for this, which is requires fg_rigidalign2.pro and tr_get_disp.pro (both of which are alignment routines developed by A. De Wijn and T. Tarbell respectively, modified by RJ Morton). The alignment process CC's four contiguous frames and calculates alignment vectors for them. The next four frames are also self aligned and then additional vectors are calculated to align to the last frame of the previous sequence. The alignment is carried out by with shift_img (T. Metcalf) using poly_2d.\
+\
+* May be better to use FFT for shifting as suggested by Welch & Fisher - shift_frac2d. Probably\
+slower but more accurate.\
+\
+Using /choose_corr_box allows a manual selection of the CC box through an interactive window - normally useful when examining data for the first time. \
+\
+It is advised to use the /dosob keyword if doing alignment which uses the Sobel gradient filter to calculate 2d gradients in the image. The intensity gradient turns out to provide better contrast and improves CC.\
+\
+After alignment the routine stops so that you can play movies of the data cubes to check quality of\
+alignment procedure.\
+\
+Type .c to continue.\
+\
+Basic pixel mask is defined based on inner and outer radius of occulter. This is not waste computational time on pixels with no signal.\
+\
+The next stage is to calculate the wave propagation angle. This is done as default. The velocity data is mean subtracted and FFT'd. The transformed data is then sent to wave_angle_calc.pro for\
+processing.\
+\
+Wave Angle Calculation\
+Starting at a pixel, a 40 by 40 is generated around the pixel. Each time-series in then cross-correlated in Fourier space with the central pixel to calculate the cross-spectral coherence. The results are filtered in frequency space, focusing on a narrow frequency band centred on 3.5 mHz with a width of 1.5 mHz (is this the best choice?) in order to select the power enhancement seen in power spectra (e.g., Tomczyk & McIntosh 2009; Morton et al 2016). If a time-series has a coherence of gt 0.5 with the central pixel, it is saved. Otherwise, it is rejected. \
+\
+Not entirely sure if this best selection criteria for coherence, seems arbitrary but works well enough.\
+\
+If there is enough coherent points (>10) then the \
+a straight line is fit to the minimise the perpendicular distance between all points. This is an analytic solution calculated under the constraint that the line does through the central pixel. Error on angle\
+calcaulated using analytic perturbation by pm 2 degrees (not sure where this comes from).\
+\
+No account for quality of points is considered - may benefit from applying some rejection criteria, e.g, double fitting process or weighting based on coherence. Calculation of error on angle may or may not be appropriate. Also, unclear how this performs near occulting disk with half empty boxes!\
+\
+A measure of coherence 2 dimensionally is also calculated by fitting ellipses to the data points, assuming a coherent island of points. Returning the length of the major and minor axis.\
+\
+Once perfomerd for every pixel inside mask, returns to main programme.\
+\
+The elliptical coherence measure is used to define a new mask, that removes pixels with no significant coherence to at least 10 other pixels.\
+}
