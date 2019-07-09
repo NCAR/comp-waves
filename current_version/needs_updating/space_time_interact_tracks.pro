@@ -459,8 +459,8 @@ WHILE quit_trigger EQ 0 DO BEGIN
     ; compute phase speeds of prograde, retrograde and combination
     ;#####################################
 
-    pro_speed=compute_speed_new(pro_vel,index.xscale,index.norm_cadence,debug=1)
-    ret_speed=compute_speed_new(ret_vel,index.xscale,index.norm_cadence,/ret,debug=1)
+    pro_speed=compute_speed(pro_vel,index.xscale,index.norm_cadence,debug=1)
+    ret_speed=compute_speed(ret_vel,index.xscale,index.norm_cadence,/ret,debug=1)
 
     phase_speed = pro_speed-pro_speed
     phase_speed[0]=(pro_speed[0]/pro_speed[1]^2 + abs(ret_speed[0])/$
@@ -495,6 +495,9 @@ WHILE quit_trigger EQ 0 DO BEGIN
     ;  display_kimage,power,-6.,-4.,tit='k-!4x!3 Diagram',units='log!d10!n(Power) (km!u2!n s!u-2!n)',$
     ;   table=0,output='s',windnum=6,wherebar='right',scale=1.,xt='Frequency (Hz)',$
     ;   yt='Spatial Frequency (Mm!u-1!n)',phase_speed=phase_speed[0]
+
+    print,n_elements(xtrack)
+    for ij=0,track_counter-2 do print,n_elements(wave_info[ij].xtrack)
 
     str = {power:power, pro_power:pro_power, ret_power:ret_power, vel:vel, pro_vel:pro_vel, ret_vel:ret_vel, $
          pro_speed:pro_speed, ret_speed:ret_speed, phase_speed:phase_speed, xtrack:xtrack, ytrack:ytrack, $

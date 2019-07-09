@@ -62,7 +62,7 @@ normalCadence = median(cadence)
 ; look for the start of the normal cadence in case the sequence 
 ;================================================================
 sequenceStart = 0
-sequenceEnd   = numberFiles-1
+;sequenceEnd   = numberFiles-1
 
 in=where(cadence EQ normalCadence)
 sequenceStart=in[0]
@@ -71,8 +71,8 @@ IF n_elements(frameLimitInterpolation) EQ 0 THEN frameLimitInterpolation=2
 
 ;Determine final image in series either last frame or frame before large gap
 ;Locations where the jump is larger than the frameLimitInterpolationit x normal cadence
-largeGapLocation=where(cadence[sequenceStart:numberFiles-(frameLimitInterpolation+1)] GT (frameLimitInterpolation)*normalCadence)
-IF largeGapLocation[0] EQ -1 THEN sequenceEnd=numberFiles-(frameLimitInterpolation+1) $
+largeGapLocation=where( cadence[sequenceStart:numberFiles-2] GT (frameLimitInterpolation)*normalCadence )
+IF largeGapLocation[0] EQ -1 THEN sequenceEnd=numberFiles-1 $
                              ELSE sequenceEnd=largeGapLocation[0]+sequenceStart
 
 
@@ -83,8 +83,7 @@ cad_plot_end=plot([sequenceEnd,sequenceEnd],[0,maxCadence],'r',line=2,/overplot,
 leg=legend(target=[cad_plot_end],/normal,position=[0.8,0.8])
 cad_plot.save,config['outpath']+'data_gaps.png'
 
-print,'======================'
-print,'Files to be read in: Start of sequence',sequenceStart,' || End of sequence',sequenceEnd
+
 ;Cuts down file list to those values being loaded in
 fileList = fileList[sequenceStart:sequenceEnd]
 cadence=cadence[sequenceStart:sequenceEnd-1]
@@ -93,10 +92,20 @@ cadence=cadence[sequenceStart:sequenceEnd-1]
 locationOfGaps=where(cadence GT 1.1*normalCadence)
 gapStart=locationOfGaps
 
-;Check to see whether any missing frames
+;Check to see whether any missing frames and if any gaps are too close to end of sequence
 IF where(locationOfGaps[0] lt sequenceEnd) EQ -1 THEN numberGaps=0 $
-ELSE IF gapStart[0] GE 0 THEN numberGaps=n_elements(gapStart) ELSE numberGaps=0 ; number of gaps
+ELSE IF gapStart[0] GE 0 THEN BEGIN 
+        endpoint=where(locationOfGaps GT sequenceEnd-frameLimitInterpolation,complement=keepGaps)
+        IF endpoint[0] gt 0 THEN BEGIN
+            sequenceEnd=locationOfGaps[endpoint[0]]
+            numberGaps=n_elements(keepGaps)
+            locationOfGaps=temporary(locationOfGaps[keepGaps])
+            gapStart=locationOfGaps
+        ENDIF
+     ENDIF ELSE numberGaps=0 ; number of gaps
 
+print,'======================'
+print,'Files to be read in: Start of sequence',sequenceStart,' || End of sequence',sequenceEnd
 
 ;================================================================
 ;Works out which positions need filling
@@ -122,7 +131,7 @@ IF numberGaps GT 0 THEN BEGIN
           frames_to_skip[i+add:i+add+num_skip[-1]]=gapStart[i]+num_skip
           add+=num_skip[-1]
       ENDFOR
-ENDIF 
+ENDIF ELSE numberMissingFrames=0
 
 ;================================================================
 ; fill cubes with data and interpolate if necessary
@@ -162,7 +171,7 @@ FOR ii=0,nt-1 DO BEGIN
 
     ENDIF ELSE add=add+1
     
-    IF k LT numberMissingFrames-1 THEN IF ii EQ frames_to_skip[k] THEN k=k+1
+    If numberMissingFrames GT 0 THEN IF k LT numberMissingFrames-1 THEN IF ii EQ frames_to_skip[k] THEN k=k+1
      counter,ii+1,nt,/percent 
 ENDFOR
 
@@ -195,70 +204,71 @@ cube_w*=rebin(mask,nx,ny,nt)
 
 
 ;Fill in missing frames
-IF NOT keyword_set(max_ent) THEN BEGIN
-        ii=0
-        nx_arr=findgen(nx)
-        ny_arr=findgen(ny)
-        IF numberGaps GT 0 THEN BEGIN
-           print,"Interpolating data"
-            WHILE ii LT numberGaps DO BEGIN
-                 gapStartIndex=gapStart[ii]
-                 gapEndIndex=gapSize[ii]
-                 z=findgen(gapEndIndex)/gapEndIndex
-                 z=z[1:gapEndIndex-1]
-                 ;print,gapStartIndex,gapEndIndex,ii
-                 dumi=[[[cube_i[0:-1,0:-1,gapStartIndex-1]]],[[cube_i[0:-1,0:-1,gapStartIndex+gapEndIndex-1]]]]
-                 dumv=[[[cube_v[0:-1,0:-1,gapStartIndex-1]]],[[cube_v[0:-1,0:-1,gapStartIndex+gapEndIndex-1]]]]
-                 dumw=[[[cube_w[0:-1,0:-1,gapStartIndex-1]]],[[cube_w[0:-1,0:-1,gapStartIndex+gapEndIndex-1]]]]
-                 cube_i[0:-1,0:-1,gapStartIndex:gapStartIndex+gapEndIndex-2] = interpolate(dumi,nx_arr,ny_arr,z,/grid)
-                 cube_v[0:-1,0:-1,gapStartIndex:gapStartIndex+gapEndIndex-2] = interpolate(dumv,nx_arr,ny_arr,z,/grid)
-                 cube_w[0:-1,0:-1,gapStartIndex:gapStartIndex+gapEndIndex-2] = interpolate(dumw,nx_arr,ny_arr,z,/grid)
-                 ;ii+=gapEndIndex-1
-                 ii+=1
-            ENDWHILE
-          
-        ENDIF
-        comm_string=comm_string+' Gaps filled with linear interpolation. '
-ENDIF ELSE BEGIN
-
-        print,'Interpolating data via Maximum Entropy'
-        numberGaps=n_elements(gapStart)
-        type_arr=fltarr(nx,ny,numberGaps,3)
-        coef_num=config['maxentCoefficientNumber']
-        FOR i=0,nx-1 DO FOR j=0,ny-1 DO BEGIN
+IF numberMissingFrames GT 0 THEN BEGIN
+  IF NOT keyword_set(max_ent) THEN BEGIN
+          ii=0
+          nx_arr=findgen(nx)
+          ny_arr=findgen(ny)
+          IF numberGaps GT 0 THEN BEGIN
+             print,"Interpolating data"
+              WHILE ii LT numberGaps DO BEGIN
+                   gapStartIndex=gapStart[ii]
+                   gapEndIndex=gapSize[ii]
+                   z=findgen(gapEndIndex)/gapEndIndex
+                   z=z[1:gapEndIndex-1]
+                   ;print,gapStartIndex,gapEndIndex,ii
+                   dumi=[[[cube_i[0:-1,0:-1,gapStartIndex-1]]],[[cube_i[0:-1,0:-1,gapStartIndex+gapEndIndex-1]]]]
+                   dumv=[[[cube_v[0:-1,0:-1,gapStartIndex-1]]],[[cube_v[0:-1,0:-1,gapStartIndex+gapEndIndex-1]]]]
+                   dumw=[[[cube_w[0:-1,0:-1,gapStartIndex-1]]],[[cube_w[0:-1,0:-1,gapStartIndex+gapEndIndex-1]]]]
+                   cube_i[0:-1,0:-1,gapStartIndex:gapStartIndex+gapEndIndex-2] = interpolate(dumi,nx_arr,ny_arr,z,/grid)
+                   cube_v[0:-1,0:-1,gapStartIndex:gapStartIndex+gapEndIndex-2] = interpolate(dumv,nx_arr,ny_arr,z,/grid)
+                   cube_w[0:-1,0:-1,gapStartIndex:gapStartIndex+gapEndIndex-2] = interpolate(dumw,nx_arr,ny_arr,z,/grid)
+                   ;ii+=gapEndIndex-1
+                   ii+=1
+              ENDWHILE
             
-            IF mask[i,j] EQ 1 THEN BEGIN
-               ;cube_i --------------
-               temp=reform(cube_i[i,j,*])
-               fill_gaps,temp,gapStart,gapEnd,numberGaps,coef_num=coef_num,types=types
-               cube_i[i,j,*]=temp
+          ENDIF
+          comm_string=comm_string+' Gaps filled with linear interpolation. '
+  ENDIF ELSE BEGIN
 
-               ;Saves type of 'filling' used for each gap
-               IF (where(types eq 0))[0] NE -1 THEN types[where(types eq 0)]=6
-               type_arr[i,j,0:-1,0]=types
+          print,'Interpolating data via Maximum Entropy'
+          numberGaps=n_elements(gapStart)
+          type_arr=fltarr(nx,ny,numberGaps,3)
+          coef_num=config['maxentCoefficientNumber']
+          FOR i=0,nx-1 DO FOR j=0,ny-1 DO BEGIN
+              
+              IF mask[i,j] EQ 1 THEN BEGIN
+                 ;cube_i --------------
+                 temp=reform(cube_i[i,j,*])
+                 fill_gaps,temp,gapStart,gapEnd,numberGaps,coef_num=coef_num,types=types
+                 cube_i[i,j,*]=temp
 
-               ;cube_v --------------
-               temp=reform(cube_v[i,j,*])
-               fill_gaps,temp,gapStart,gapEnd,numberGaps,coef_num=coef_num,types=types
-               cube_v[i,j,*]=temp
-               IF (where(types eq 0))[0] NE -1 THEN types[where(types eq 0)]=6
-               type_arr[i,j,0:-1,1]=types
+                 ;Saves type of 'filling' used for each gap
+                 IF (where(types eq 0))[0] NE -1 THEN types[where(types eq 0)]=6
+                 type_arr[i,j,0:-1,0]=types
 
-               ;cube_w --------------
-               temp=reform(cube_w[i,j,*])
-               fill_gaps,temp,gapStart,gapEnd,numberGaps,coef_num=coef_num,types=types
-               cube_w[i,j,*]=temp
-               ;Saves type of 'filling' used for each gap
-               IF (where(types eq 0))[0] NE -1 THEN types[where(types eq 0)]=6
-               type_arr[i,j,0:-1,2]=types
+                 ;cube_v --------------
+                 temp=reform(cube_v[i,j,*])
+                 fill_gaps,temp,gapStart,gapEnd,numberGaps,coef_num=coef_num,types=types
+                 cube_v[i,j,*]=temp
+                 IF (where(types eq 0))[0] NE -1 THEN types[where(types eq 0)]=6
+                 type_arr[i,j,0:-1,1]=types
 
-            ENDIF
-            counter,j+i*ny,nx*ny,/percent 
-        ENDFOR
-        comm_string=comm_string+' Gaps filled with Maximum Entropy method. '
+                 ;cube_w --------------
+                 temp=reform(cube_w[i,j,*])
+                 fill_gaps,temp,gapStart,gapEnd,numberGaps,coef_num=coef_num,types=types
+                 cube_w[i,j,*]=temp
+                 ;Saves type of 'filling' used for each gap
+                 IF (where(types eq 0))[0] NE -1 THEN types[where(types eq 0)]=6
+                 type_arr[i,j,0:-1,2]=types
 
-ENDELSE
+              ENDIF
+              counter,j+i*ny,nx*ny,/percent 
+          ENDFOR
+          comm_string=comm_string+' Gaps filled with Maximum Entropy method. '
 
+  ENDELSE
+ENDIF
 
 
 

@@ -32,21 +32,13 @@
 ;                                This keyword is required for first load of data. If not provided,
 ;                                default is to look for existing, gap-filled data (saved as cube_ivw_date).
 ;
-;              nwl             - INTEGER, 3 or 5. 
-;                                Number of wavelengths (3pt or 5 pt data).
-;                                Default is 3. 
+;              frameLimitInterp - sets maximum allowed number of missing frames (gaps) in a row, default is 2.
+;                                 Default gap filling method is linear interpolation.
+;             
+;              max_ent         - Uses maximum entropy method for gap filling
 ;
-;              lim             - sets maximum allowed number of missing frames (gaps) in a row, default is 2.
-;                                Current gap filling methodology is linear interpolation.
-;
-;              name_addon      - STRING.
-;                                Set this to a string that is added to the
-;                                name of the sav-files and plots, to
-;                                distinguish between different runs.
-;               
-;              max_ent         - 
-;
-;              no_hard_mask    -
+;              no_hard_mask    - turns off the hard masking of the data. Hard mask removes any pixel that has at least one frame
+;                                with no signal
 ;
 ;              Keyword related to cross-correlation of data
 ;              ------------------------------------------
@@ -112,7 +104,6 @@
 ;              altangle - Use alternative estimate for wave angle based on 
 ;                         sixlin & choosing 
 ;              splt_cube - save cubes as separate files
-;              npt_init - choose path length for phase speed measurement (default 25) - choose odd value
 ;
 ;CALLS: find_man_date.pro, do_apod.pro, comp_load_files.pro, wave_angle_calc.pro, compute_speed.pro, dejitter.pro,
 ;        plot_wave_maps.pro
@@ -150,14 +141,12 @@ function stop_and_save,cube_i,cube_v,cube_w,index,config,splt_cube=splt_cube
 END
 
 
-pro wave_tracking, date, init_load=init_load, lim=lim, max_ent=max_ent,$   ;related to reading/writing in data
-                         splt_cube=splt_cube,name_addon=name_addon, nwl=nwl,$
-                         no_hard_mask=no_hard_mask,$
+pro wave_tracking, date, init_load=init_load, frameLimitInterp=frameLimitInterp, max_ent=max_ent,$   ;related to reading/writing in data
+                         splt_cube=splt_cube, no_hard_mask=no_hard_mask,$
                          cross_corr=cross_corr, $                          ;related to cross-correlation of data
                          choose_corr_box=choose_corr_box,dosob=dosob, $                  
-                         compute_waveang=compute_waveang, freq0=freq0, $   ;related to wave angle calculation
-                         altangle=altangle, $      
-                         compute_speeds=compute_speeds, npt_init=npt_init, $ ;related to wave propagation speed calculation
+                         compute_waveang=compute_waveang, altangle=altangle, $   ;related to wave angle calculation   
+                         compute_speeds=compute_speeds, $ ;related to wave propagation speed calculation
                          plot_maps=plot_maps, save_coh = save_coh, $       ;additional things to save/plot
                          wr_speeds = wr_speeds,debug = debug              ;related to debugging
                          
@@ -196,7 +185,7 @@ if keyword_set(plot_maps) then begin
 endif
 
 
-case config['filterCentralFrequency'] of
+case (config['filter'].centralFrequency) of
  0.0015: freqst = '1.5mHz'
  0.0035: freqst = '3.5mHz'
  0.0055: freqst = '5.5mHz'
@@ -228,7 +217,7 @@ IF keyword_set(init_load) THEN BEGIN
       END
 
       
-      comp_load_files,cube_i,cube_v,cube_w,index,config,frameLimitInterpolation=frameLimitInterpolation,$
+      comp_load_files,cube_i,cube_v,cube_w,index,config,frameLimitInterp=frameLimitInterp,$
                       max_ent=max_ent,no_hard_mask=no_hard_mask
 
 

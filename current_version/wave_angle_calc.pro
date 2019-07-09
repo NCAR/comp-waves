@@ -36,11 +36,11 @@ nt=index.NFRAMES
 
 ;Unpack dictionaries here - slow to access so avoid in loops
 mask=index.mask
-coherenceBoxLength=2.*config['coherenceBoxHalfLength']+1
-coherenceSmoothing=config['coherenceSmoothing']
-coherenceBoxHalfLength=config['coherenceBoxHalfLength']
-minNumberCoherentPixels=config['minNumberCoherentPixels']
-coherenceLimit =config['coherenceLimit']
+coherenceBoxLength=2.*(config['coherence'].boxHalfLength)+1
+coherenceSmoothing=(config['coherence'].smoothing)
+coherenceBoxHalfLength=(config['coherence'].boxHalfLength)
+minNumberCoherentPixels=(config['coherence'].minNumberPixels)
+coherenceLimit =(config['coherence'].limit)
 
 
 
@@ -55,7 +55,7 @@ ybox=transpose(xbox)
 ;Set up filter
 nspec=nt/2
 freq   = findgen(nspec)/(float(nspec*2)*index.normalCadence)
-filter = exp( -(freq-config['filterCentralFrequency'])^2/config['filterWidth']^2 )
+filter = exp( -(freq-(config['filter'].centralFrequency) )^2/(config['filter'].width)^2 )
 filter(0) = 0.                      ; set dc to zero
 filter(where (freq lt .001)) = 0.   ; set low frequencies to zero
 filter=filter/total(filter)

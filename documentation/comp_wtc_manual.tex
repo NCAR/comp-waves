@@ -211,10 +211,7 @@ region used for cross-correlation can also be entered in find$\_$man$\_$date.
 \textit{IDL$>$ wave$\_$tracking,'20120327',/compute$\_$speeds}
 
 
-----------------------------------------\\
-Text below here needs to be sorted.
-
-Also calculates the Alfvenic wave propagation angle from velocity data.
+Calculates the Alfvenic wave propagation angle from velocity data.
 
 %------------------------------
 %------------------------------
@@ -242,6 +239,7 @@ Undefined dates are given default values which are probably no good!
 
 
 
+\section{text that needs working on}
 
 With /debug set, ….
 
@@ -275,5 +273,103 @@ Once performed for every pixel inside mask, returns to main programme.
 
 The elliptical coherence measure is used to define a new mask, that removes pixels with no significant coherence to at least 10 other pixels.
 
+
+\section{Keywords}
+\subsection{wave$\_$tracking}
+Keyword related to reading/writing in data\\
+------------------------------------------\\
+\textit{init$\_$load}       - use this keyword for initial data load and gap filling.
+                  This keyword is required for first load of data. If not provided,
+                  default is to look for existing, gap-filled data (saved as cube$\_$ivw$\_$date).\\
+\smallskip
+
+\textit{frameLimitInterp} - sets maximum allowed number of missing frames (gaps) in a row, default is 2.
+                   Default gap filling method is linear interpolation.\\
+\smallskip             
+
+\textit{max$\_$ent}         - Uses maximum entropy method for gap filling\\
+\smallskip
+
+\textit{no$\_$hard$\_$mask}    - turns off the hard masking of the data. Hard mask removes any pixel that has at least one frame
+                  with no signal\\
+\smallskip
+
+Keyword related to cross-correlation of data\\
+------------------------------------------\\
+\smallskip
+
+\textit{cross$\_$corr}      - Remove jitter from the CoMP data. Default operation is
+                  to use coordinate locations in find$\_$man$\_$date. If
+                  you do this, make sure to set the debug
+                  keyword for the first run, which will show
+                  you the box for which the cross-correlation 
+                  is computed. If the default box does not look 
+                  correct, set the values x1, x2, y1, y2
+                  manually in find$\_$man$\_$date.  \\
+\smallskip
+
+\textit{choose$\_$corr$\_$box} - Select the cross-correlation box with
+                  the mouse.\\
+\smallskip
+
+\textit{dosob}           - uses a sobel filtered image for alignment (typically better \& faster results)\\
+\smallskip
+
+Keyword related to wave angle calculation\\
+------------------------------------------\\
+
+\smallskip
+
+\textit{compute$\_$waveang} - will compute the angles of wave propagation, i.e. orientation of magnetic field.
+                  Best to align data before calculating wave angle.\\
+\smallskip
+
+\textit{compute$\_$speeds}  - compute phase speeds after the
+                  computation of the wave propagation
+                  angle. \\
+\smallskip
+
+\textit{plot$\_$maps}       - plot ps-files with all quantities after the
+                  computation.\\
+\smallskip                
+             
+
+\textit{save$\_$coh}        - Create a sav-file containing a measure of
+                  the coherence for each pixel. This is done
+                  by fitting an ellipse to the coherence
+                  island. The coherence for a pixel is good 
+                  when the ellipse is long and slim, i.e.
+                  the normalized ratio of the major and minor
+                  axis of the ellipse is a measure of the
+                  coherence. The sav-file will contain an
+                  array coh$\_$measure, which is just the major
+                  (coh$\_$measure[*,*,0]) and minor
+                  (coh$\_$measure[*,*,1]) axis of the ellipse. 
+                  One possible way to compute a quantity for 
+                  the coherence quality would then be
+                   coherence$\_$quality = (coh$\_$measure[*,*,0]-coh$\_$measure[*,*,1])/(coh$\_$measure[*,*,0]+coh$\_$measure[*,*,1])\\
+\smallskip
+
+\textit{debug}            - set this if you want to visually
+                  check what's going on. *MUCH MUCH*
+                  slower computation though, so don't
+                  use this as the default.\\
+\smallskip
+
+\textit{wr$\_$speeds}        - This is mainly intended for checking the
+                  computed speeds afterwards. It will write
+                  out *very* large arrays, so don't
+                  do this on a computer with insufficient
+                  memory or disk space, especially in
+                  combination with the save$\_$coh keyword. Not
+                  really needed for everyday use, mostly for
+                  debugging. \\
+\smallskip
+
+\textit{altangle} - Use alternative estimate for wave angle based on 
+           sixlin \& choosing \\
+\smallskip
+
+\textit{splt$\_$cube} - save cubes as separate files\\
 
 \end{document}

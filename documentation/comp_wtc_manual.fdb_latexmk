@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1561465993 "comp_wtc_manual.tex" "comp_wtc_manual.pdf" "comp_wtc_manual" 1561465993
+["pdflatex"] 1562666483 "comp_wtc_manual.tex" "comp_wtc_manual.pdf" "comp_wtc_manual" 1562666484
   "/Users/richardmorton/Library/texmf/tex/latex/wrapfig/wrapfig.sty" 1456392544 26219 e6d93edace44be73d29edb9c949b8c55 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
@@ -12,7 +12,9 @@
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1480098698 940 228d6584342e91276bf566bcf9716b83 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1480098701 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1480098701 1324 c910af8c371558dc20f2d7822f66fe64 ""
+  "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm" 1480098701 1344 8a0be4fe4d376203000810ad4dc81558 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm" 1480098701 1336 3125ccb448c1a09074e3aa4a9832f130 ""
+  "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm" 1480098701 1332 1fde11373e221473104d6cc5993f046e ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm" 1480098701 1300 63a6111ee6274895728663cf4b4e7e81 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1480098701 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1480098701 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -81,9 +83,9 @@
   "/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1495593472 2350277 a699055bee05bf8a40b0504752487295 ""
   "/usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1504792456 4129591 7161acc40c91d26d0baaf39be66e9030 ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
-  "comp_wtc_manual.aux" 1561465993 916 4e665f97d376a65c442161f2632485a4 ""
-  "comp_wtc_manual.tex" 1561465992 14682 57b5fc498c79637db31957ab346f09ec ""
+  "comp_wtc_manual.aux" 1562666484 1157 49a8b484eb201eb356d1c7ca1ded1fa9 ""
+  "comp_wtc_manual.tex" 1562666482 18866 43200c48c964a9c2083968d1a4dd2505 ""
   (generated)
-  "comp_wtc_manual.pdf"
   "comp_wtc_manual.aux"
   "comp_wtc_manual.log"
+  "comp_wtc_manual.pdf"

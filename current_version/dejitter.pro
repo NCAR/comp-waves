@@ -72,18 +72,18 @@ repeat begin
  fg_rigidalign2,cube_i_sm,cube_i_out,dx=dx,dy=dy,dispvecs=temp,/quiet,x0=0,y0=0,/no_apply
  cube_i_sm=shift_img(temporary(cube_i_sm),temp)
  offset=offset+temp
- if (max(abs(0-temp[0,*])) lt config['ccThreshold'] and max(abs(0-temp[1,*])) lt config['ccThreshold']) $
-                              or ii eq config['maxNumberIterations']-1 then result=1
+ if (max(abs(0-temp[0,*])) lt (config['crossCorr'].threshold) and max(abs(0-temp[1,*])) lt (config['crossCorr'].threshold)) $
+                              or ii eq (config['crossCorr'].maxNumberIterations)-1 then result=1
  ii=ii+1
  
  IF keyword_set(ccdebug) THEN BEGIN
     print, 'cross-correlation iterations (tr_get_disp_2b):'
     plot, temp[0,*], title='shift '+strcompress(ii)+' in x ' ; x shift
-    oplot, findgen(2*nt), fltarr(2*nt)+config['ccThreshold'], linestyle=2
-    oplot, findgen(2*nt), fltarr(2*nt)-config['ccThreshold'], linestyle=2
+    oplot, findgen(2*nt), fltarr(2*nt)+(config['crossCorr'].threshold), linestyle=2
+    oplot, findgen(2*nt), fltarr(2*nt)-(config['crossCorr'].threshold), linestyle=2
     plot, temp[1,*], title='shift '+strcompress(ii)+' in y ' ; y shift as a function of time
-    oplot, findgen(2*nt), fltarr(2*nt)+config['ccThreshold'], linestyle=2
-    oplot, findgen(2*nt), fltarr(2*nt)-config['ccThreshold'], linestyle=2
+    oplot, findgen(2*nt), fltarr(2*nt)+(config['crossCorr'].threshold), linestyle=2
+    oplot, findgen(2*nt), fltarr(2*nt)-(config['crossCorr'].threshold), linestyle=2
     wait, 0.1
     print,ii
  ENDIF
